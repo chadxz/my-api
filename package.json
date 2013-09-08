@@ -1,0 +1,17 @@
+{
+  "name": "my-api",
+  "author": "Chad McElligott <chad.mcelligott@gmail.com>",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chadxz/my-api.git"
+  },
+  "dependencies": {
+    "express": "3.4.0",
+    "request": "~2.27.0"
+  }
+}
