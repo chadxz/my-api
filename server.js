@@ -1,19 +1,8 @@
-//var api = require('./lib/api');
-//var http = require('http');
-var pinboardApi = require('./lib/pinboardApi');
+var expressServer = require('./lib/expressServer');
+var http = require('http');
 
-//var port = api.get('port');
-//
-var pinboardApiToken = process.env['PinboardAPIToken'];
-var pinboard = new pinboardApi.Pinboard(pinboardApiToken);
+var port = expressServer.get('port');
 
-pinboard.getAllPosts(function (error, response, body) {
-   if (!error && response.statusCode == 200) {
-     console.log(body);
-   }
+http.createServer(expressServer).listen(port, function () {
+  console.log('web server listening on port ' + port);
 });
-
-
-//http.createServer(api).listen(port, function () {
-//  console.log('web server listening at http://localhost:' + port);
-//});
