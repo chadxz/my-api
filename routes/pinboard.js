@@ -4,10 +4,8 @@ var pinboardRoutes = (function () {
   var pinboardUtils = require('../lib/pinboardUtils');
 
   var showAllPosts = function (req, res) {
-    pinboardUtils.checkPinboardForFreshData(function (error) {
-      redis.get(pinboardUtils.redisKeys.posts, function (err, value) {
-        res.send(value);
-      });
+    redis.get(pinboardUtils.redisKeys.posts, function (err, value) {
+      res.send(value);
     });
   };
 
