@@ -50,7 +50,7 @@ heroku config:set PINBOARD_API_TOKEN=apitoken
 and finally push the application to heroku
 
 ```shell
-git push origin heroku
+git push heroku master
 ```
 
 more information about deploying to Heroku can be found on the [Heroku website][].
