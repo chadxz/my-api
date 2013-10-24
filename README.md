@@ -36,10 +36,17 @@ npm start
 
 ###Deploy
 
-To deploy the project to heroku, first download and install the [Heroku Toolkit][].  Then in the project directory, initialize a git remote for your heroku app.
+To deploy the project to heroku, first download and install the [Heroku Toolkit][].  Then in the project directory, login and initialize a git remote for your heroku app.
 
 ```shell
+heroku login
 heroku git:remote -a heroku-appname-1234
+```
+
+add the free Redis To Go nano addon to the heroku app
+
+```shell
+heroku addons:add redistogo
 ```
 
 then add the environment variables to the heroku config
