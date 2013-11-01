@@ -1,10 +1,10 @@
 This project is a work-in-progress proxy API that contains endpoints to retrieve 3rd-party data about services that I use.  Currently implemented services are:
 - Pinboard
+- Last.fm 
 
 Services I plan to implement are:
 - Twitter
 - Pocket
-- Last.fm
 - Github
 
 This API is used to access data about myself for display on my website at [chadmcelligott.com][]
@@ -26,6 +26,7 @@ Finally, the API will require an API key for the various providers.  These shoul
 
 ```shell
 export PINBOARD_API_TOKEN=apitoken
+export LASTFM_API_KEY=apikey
 ```
 
 ###Run
@@ -53,6 +54,7 @@ then add the environment variables to the heroku config
 
 ```shell
 heroku config:set PINBOARD_API_TOKEN=apitoken
+heroku config:set LASTFM_API_KEY=apikey
 ```
 and finally push the application to heroku
 
