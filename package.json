@@ -22,5 +22,11 @@
     "iso8601": "~1.1.1",
     "corser": "~1.2.0",
     "lodash": "~2.2.1"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.7.1",
+    "grunt-contrib-watch": "~0.5.3",
+    "grunt-contrib-nodeunit": "~0.2.2"
   }
 }
