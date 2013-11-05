@@ -3,7 +3,7 @@ module.exports = (function () {
   var lastfmApi = require('../lib/lastfmApi');
 
   return {
-    constructorWorks: function (test) {
+    constructor_ReturnsInstance: function (test) {
       test.expect(1);
 
       var lastfmUserApi = new lastfmApi.LastfmUser('', '');
@@ -12,7 +12,7 @@ module.exports = (function () {
       test.done();
     },
 
-    constructorWorksWithoutNewStatement: function (test) {
+    constructor_ReturnsInstanceWithoutNewStatement: function (test) {
       test.expect(1);
 
       var lastfmUserApi = lastfmApi.LastfmUser('', '');
@@ -21,7 +21,7 @@ module.exports = (function () {
       test.done();
     },
 
-    constructorSetsProperties: function (test) {
+    constructor_SetsProperties: function (test) {
       test.expect(3);
 
       var apiKey = 'someapikey',
@@ -36,12 +36,73 @@ module.exports = (function () {
       test.done();
     },
 
-    constructorSetsDefaultFormat: function (test) {
+    constructor_SetsDefaultFormat: function (test) {
       test.expect(1);
 
       var lastfmUserApi = new lastfmApi.LastfmUser('', '');
 
       test.ok(lastfmUserApi.format && lastfmUserApi.format !== '');
+
+      test.done();
+    },
+
+    getApiCallUrl_WhenPassedNonStringMethod_ReturnsEmptyString: function(test) {
+      test.expect(1);
+
+      var lastfmUserApi = new lastfmApi.LastfmUser('', ''),
+          apiCallUrl = lastfmUserApi.getApiCallUrl(null);
+
+      test.strictEqual(apiCallUrl, '');
+
+      test.done();
+    },
+
+    getApiCallUrl_WhenPassedUpperCaseMethod_LowersMethodCase: function(test) {
+      test.expect(1);
+
+
+      var lastfmUserApi = new lastfmApi.LastfmUser('apikey', 'username'),
+          methodName = 'SOMEMETHOD',
+          apiCallUrl = lastfmUserApi.getApiCallUrl(methodName);
+
+      test.ok(apiCallUrl.indexOf(methodName.toLowerCase()) > -1);
+
+      test.done();
+    },
+
+    getApiCallUrl_WhenCalled_ReturnsValidCallUrl: function(test) {
+      test.expect(4);
+
+      var userName = 'someusername',
+          apiKey = 'someapikey',
+          someFormat = 'someformat',
+          method = 'user.getRecentTracks',
+          lastfmUserApi = new lastfmApi.LastfmUser(apiKey, userName, someFormat),
+          apiCallUrl = lastfmUserApi.getApiCallUrl(method);
+
+      test.ok(apiCallUrl.indexOf(userName) > -1);
+      test.ok(apiCallUrl.indexOf(apiKey) > -1);
+      test.ok(apiCallUrl.indexOf(someFormat) > -1);
+      test.ok(apiCallUrl.indexOf(method.toLowerCase()) > -1);
+
+      test.done();
+    },
+
+    getApiCallUrl_WhenCalledWithExtendedOptions_AppendsOptionsToCallUrl: function(test) {
+
+      var key,
+          options = {foo: 'bar', bam: 'baz'},
+          lastfmUserApi = new lastfmApi.LastfmUser('apikey', 'username'),
+          apiCallUrl = lastfmUserApi.getApiCallUrl('somemethod', options);
+
+      test.expect(Object.keys(options).length * 2);
+
+      for (key in options) {
+        if (options.hasOwnProperty(key)) {
+          test.ok(apiCallUrl.indexOf(key) > -1, key + ' not found in ' + apiCallUrl);
+          test.ok(apiCallUrl.indexOf(options[key]) > -1, options[key] + ' not found in ' + apiCallUrl);
+        }
+      }
 
       test.done();
     }
