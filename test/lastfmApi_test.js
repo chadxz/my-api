@@ -1,6 +1,7 @@
 module.exports = (function () {
 
-  var lastfmApi = require('../lib/lastfmApi');
+  var lastfmApi = require('../lib/lastfmApi'),
+      nock = require('nock');
 
   return {
     constructor_ReturnsInstance: function (test) {
@@ -105,6 +106,19 @@ module.exports = (function () {
       }
 
       test.done();
+    },
+
+    getRecentTracks_WhenCalled_MakesApiCall: function(test) {
+      var apiEndpoint = 'https://ws.audioscrobbler.com',
+          lastfmUserApi = new lastfmApi.LastfmUser('apikey', 'username'),
+          apiMock = nock(apiEndpoint).filteringPath(/.*/, '*').get('*').reply(200);
+
+      test.expect(1);
+
+      lastfmUserApi.getRecentTracks(function () {
+        test.ok(apiMock.isDone());
+        test.done();
+      });
     }
   };
 })();
