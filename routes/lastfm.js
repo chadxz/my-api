@@ -11,5 +11,5 @@ module.exports = (function () {
 
   return {
     showRecentTracks: showRecentTracks
-  }
+  };
 })();
