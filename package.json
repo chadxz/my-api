@@ -10,6 +10,9 @@
     "type": "git",
     "url": "https://github.com/chadxz/my-api.git"
   },
+  "engines": {
+    "node": ">=0.10.* <0.11"
+  },
   "dependencies": {
     "express": "3.4.0",
     "request": "~2.27.0",
