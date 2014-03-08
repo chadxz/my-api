@@ -6,10 +6,22 @@ var http = require('http'),
     pinboardPollRate, lastfmPollRate;
 
 pinboardPollRate = pinboardUtils.rateLimits.defaultLimit * 2;
-setInterval(pinboardUtils.checkPinboardForFreshData, pinboardPollRate);
+setInterval(function () {
+  pinboardUtils.checkPinboardForFreshData(function (err, response) {
+    if (err) {
+      console.error(err, response);
+    }
+  });
+}, pinboardPollRate);
 
 lastfmPollRate = lastfmUtils.rateLimits.defaultLimit * 6;
-setInterval(lastfmUtils.checkLastfmForFreshData, lastfmPollRate);
+setInterval(function () {
+  lastfmUtils.checkLastfmForFreshData(function (err, response) {
+    if (err) {
+      console.error(err, response);
+    }
+  });
+}, lastfmPollRate);
 
 http.createServer(expressServer).listen(port, function () {
   console.log('web server listening on port ' + port);
