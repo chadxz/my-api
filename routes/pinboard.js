@@ -6,6 +6,8 @@ module.exports = (function () {
 
   function showAllPosts(req, res) {
     redis.get(pinboardUtils.redisKeys.posts, function (err, jsonPosts) {
+      if (err) return res.send(500);
+
       var pageParams;
       var posts;
 
