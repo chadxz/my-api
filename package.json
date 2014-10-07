@@ -10,7 +10,6 @@
     "jscs": "jscs ."
   },
   "precommit": [
-    "test",
     "mocha",
     "jshint",
     "jscs"
