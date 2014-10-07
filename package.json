@@ -1,0 +1,25 @@
+{
+  "name": "my-api",
+  "author": "Chad McElligott <chad.mcelligott@gmail.com>",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "mocha": "mocha",
+    "jshint": "jshint .",
+    "jscs": "jscs ."
+  },
+  "precommit": [
+    "test",
+    "mocha",
+    "jshint",
+    "jscs"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "jscs": "^1.6.2",
+    "jshint": "^2.5.6",
+    "mocha": "^1.21.4",
+    "precommit-hook": "^1.0.7"
+  }
+}

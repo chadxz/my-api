@@ -1,0 +1,17 @@
+{
+  "node": true,
+  "curly": true,
+  "latedef": true,
+  "undef": true,
+  "unused": true,
+  "trailing": true,
+  "strict": true,
+  "mocha": true,
+  "predef": [
+    "-Promise"
+  ],
+  "globals": {
+    "xit": true,
+    "xdescribe": true
+  }
+}
