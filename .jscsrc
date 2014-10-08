@@ -27,6 +27,7 @@
     "beforeOpeningCurlyBrace": true
   },
   "disallowMultipleVarDecl": true,
+  "disallowMultipleLineBreaks": true,
   "requireBlocksOnNewline": 1,
   "requireSpacesInsideObjectBrackets": "allButNested",
   "requireSpacesInsideArrayBrackets": "allButNested",
