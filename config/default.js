@@ -10,7 +10,8 @@ module.exports = {
       url: '' // optional, useful for environments like Heroku that provide urls
     },
     lastfm: {
-      apiKey: ''
+      apiKey: '',
+      user: 'chadxz'
     },
     pinboard: {
       apiToken: ''

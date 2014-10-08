@@ -17,9 +17,6 @@
   "disallowKeywords": ["with"],
   "requireSpaceBeforeBlockStatements": true,
   "requireSpacesInConditionalExpression": true,
-  "requireSpacesInAnonymousFunctionExpression": {
-    "beforeOpeningRoundBrace": true
-  },
   "disallowSpacesInNamedFunctionExpression": {
     "beforeOpeningRoundBrace": true
   },

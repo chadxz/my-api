@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "mocha": "mocha",
+    "lint": "jshint . && jscs .",
     "jshint": "jshint .",
     "jscs": "jscs ."
   },
@@ -20,7 +21,9 @@
     "config": "^1.2.3",
     "cors": "^2.4.2",
     "express": "^4.9.5",
+    "lodash": "^2.4.1",
     "method-override": "^2.2.0",
+    "redis": "^0.12.1",
     "request": "^2.45.0"
   },
   "devDependencies": {
