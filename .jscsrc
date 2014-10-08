@@ -1,6 +1,20 @@
 {
   "requireCurlyBraces": true,
-  "requireSpaceAfterKeywords": true,
+  "requireSpaceAfterKeywords": [
+      "do",
+      "for",
+      "if",
+      "else",
+      "switch",
+      "case",
+      "try",
+      "catch",
+      "void",
+      "while",
+      "return",
+      "function"
+  ],
+  "disallowKeywords": ["with"],
   "requireSpaceBeforeBlockStatements": true,
   "requireSpacesInConditionalExpression": true,
   "requireSpacesInAnonymousFunctionExpression": {
