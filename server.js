@@ -3,16 +3,18 @@
 var _ = require('lodash');
 var config = require('config').myApi;
 var redis = require('redis');
-var LastfmWorker = require('./lib/workers/lastfm');
-var LastfmClient = require('./lib/clients/lastfm').User;
+var LastfmWorker = require('./lib/workers/lastfmWorker');
+var LastfmService = require('./lib/services/lastfmService');
+var LastfmClient = require('./lib/clients/lastfmClient').User;
 var tools = require('./lib/tools');
-var app = require('./lib/app');
 var vars = require('./lib/vars');
 
+var app;
 var port = config.port;
 var redisConfig = _.clone(config.redis);
 var clients = {};
 var workers = {};
+var services = {};
 
 // setup redis client
 if (redisConfig.url) {
@@ -37,6 +39,14 @@ workers.lastfm = new LastfmWorker({
 
 // start workers
 workers.lastfm.start(vars.lastfm.rateLimitsMS.globalLimit * 5);
+
+// setup services
+services.lastfm = new LastfmService({
+  redisClient: clients.redis
+});
+
+// initialize app
+app = require('./lib/app')(services);
 
 // start http server
 app.listen(port, function () {
