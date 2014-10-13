@@ -11,7 +11,7 @@ var vars = require('./lib/vars');
 
 var app;
 var port = config.port;
-var redisConfig = _.clone(config.redis);
+var redisConfig = _.cloneDeep(config.redis);
 var clients = {};
 var workers = {};
 var services = {};
@@ -34,7 +34,7 @@ clients.lastfm = new LastfmClient(config.lastfm.apiKey, config.lastfm.user);
 workers.lastfm = new LastfmWorker({
   redisClient: clients.redis,
   lastfmClient: clients.lastfm,
-  callback: tools.getWorkerCallback('lastfm')
+  callback: tools.getLoggingWorkerCallback('lastfm')
 });
 
 // start workers
