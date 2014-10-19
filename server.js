@@ -6,6 +6,9 @@ var redis = require('redis');
 var LastfmWorker = require('./lib/workers/lastfmWorker');
 var LastfmService = require('./lib/services/lastfmService');
 var LastfmClient = require('./lib/clients/lastfmClient').User;
+var PinboardWorker = require('./lib/workers/pinboardWorker');
+var PinboardService = require('./lib/services/pinboardService');
+var PinboardClient = require('./lib/clients/pinboardClient');
 var tools = require('./lib/tools');
 var vars = require('./lib/vars');
 
@@ -29,6 +32,7 @@ if (redisConfig.password) {
 
 // setup api clients
 clients.lastfm = new LastfmClient(config.lastfm.apiKey, config.lastfm.user);
+clients.pinboard = new PinboardClient(config.pinboard.apiToken);
 
 // setup workers
 workers.lastfm = new LastfmWorker({
@@ -37,11 +41,22 @@ workers.lastfm = new LastfmWorker({
   callback: tools.getLoggingWorkerCallback('lastfm')
 });
 
+workers.pinboard = new PinboardWorker({
+  redisClient: clients.redis,
+  pinboardClient: clients.pinboard,
+  callback: tools.getLoggingWorkerCallback('pinboard')
+});
+
 // start workers
-workers.lastfm.start(vars.lastfm.rateLimitsMS.globalLimit * 5);
+workers.lastfm.start(vars.lastfm.rateLimitsMS.defaultLimit * 5);
+workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
 
 // setup services
 services.lastfm = new LastfmService({
+  redisClient: clients.redis
+});
+
+services.pinboard = new PinboardService({
   redisClient: clients.redis
 });
 
