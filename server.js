@@ -38,13 +38,13 @@ clients.pinboard = new PinboardClient(config.pinboard.apiToken);
 workers.lastfm = new LastfmWorker({
   redisClient: clients.redis,
   lastfmClient: clients.lastfm,
-  callback: tools.getLoggingWorkerCallback('lastfm')
+  callback: tools.getLoggingWorkerCallback(LastfmWorker.name)
 });
 
 workers.pinboard = new PinboardWorker({
   redisClient: clients.redis,
   pinboardClient: clients.pinboard,
-  callback: tools.getLoggingWorkerCallback('pinboard')
+  callback: tools.getLoggingWorkerCallback(PinboardWorker.name)
 });
 
 // start workers
