@@ -1,6 +1,8 @@
 Responses are passed the following object as their context:
 
+```js
 {
-  req: the express request object,
-  res: the express response object
+  req: object /* the express request object */,
+  res: object /* the express response object */
 }
+```
