@@ -5,13 +5,13 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "mocha": "mocha",
+    "test": "mocha",
     "lint": "jshint . && jscs .",
     "jshint": "jshint .",
     "jscs": "jscs ."
   },
   "precommit": [
-    "mocha",
+    "test",
     "jshint",
     "jscs"
   ],
