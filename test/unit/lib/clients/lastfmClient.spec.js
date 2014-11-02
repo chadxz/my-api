@@ -3,6 +3,7 @@ var chai = require('chai');
 chai.config.includeStack = true;
 var should = chai.should();
 var errors = require('../../../../lib/errors');
+var url = require('url');
 
 describe("lastfmClient", function () {
 
@@ -39,6 +40,64 @@ describe("lastfmClient", function () {
         var client = new LastfmUserClient('apiKey', 'user');
         client.should.include.property('apiKey', 'apiKey');
         client.should.include.property('user', 'user');
+      });
+    });
+  });
+
+  describe("the getApiCallUrl public method", function () {
+
+    var client;
+    var providedApiKey = 'myApiKey';
+    var providedUser = 'myUser';
+
+    before(function () {
+      client = new LastfmUserClient(providedApiKey, providedUser);
+    });
+
+    describe("when called without the 'method' param", function () {
+
+      it("throws a RequiredParamMissingError", function () {
+        should.throw(function () {
+          client.getApiCallUrl();
+        }, errors.RequiredParamMissingError);
+      });
+    });
+
+    describe("when called with required params", function () {
+
+      describe("and no additionalQueryParams", function () {
+
+        it("generates a Last.fm api url for the specified method", function () {
+          var apiUrl = client.getApiCallUrl('my.method');
+          should.exist(apiUrl);
+          var parsedApiUrl = url.parse(apiUrl, true);
+          parsedApiUrl.query.should.deep.equal({
+            method: 'my.method',
+            api_key: providedApiKey,
+            user: providedUser,
+            format: 'json'
+          });
+        });
+      });
+
+      describe("and additionalQueryParams", function () {
+
+        it("generates a Last.fm api url for the specified method including the additionalQueryParams", function () {
+          var apiUrl = client.getApiCallUrl('my.method', {
+            something: 'special',
+            foo: 'bar'
+          });
+          should.exist(apiUrl);
+          var parsedApiUrl = url.parse(apiUrl, true);
+          parsedApiUrl.query.should.deep.equal({
+            method: 'my.method',
+            api_key: providedApiKey,
+            user: providedUser,
+            format: 'json',
+            something: 'special',
+            foo: 'bar'
+          });
+        });
       });
     });
   });
