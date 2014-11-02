@@ -30,18 +30,15 @@ describe("lastfmClient", function () {
 
     describe("when passed all required params", function () {
 
-      describe("and the new keyword is used", function () {
+      it("returns an instanceof LastfmUser", function () {
+        var client = new LastfmUserClient('apiKey', 'user');
+        client.should.be.an.instanceof(LastfmUserClient);
+      });
 
-        it("returns an instanceof LastfmUser", function () {
-          var client = new LastfmUserClient('apiKey', 'user');
-          client.should.be.an.instanceof(LastfmUserClient);
-        });
-
-        it("has apiKey and user public properties set", function () {
-          var client = new LastfmUserClient('apiKey', 'user');
-          client.should.include.property('apiKey', 'apiKey');
-          client.should.include.property('user', 'user');
-        });
+      it("has apiKey and user public properties set", function () {
+        var client = new LastfmUserClient('apiKey', 'user');
+        client.should.include.property('apiKey', 'apiKey');
+        client.should.include.property('user', 'user');
       });
     });
   });
