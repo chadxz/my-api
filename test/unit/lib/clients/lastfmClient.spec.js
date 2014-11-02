@@ -43,14 +43,6 @@ describe("lastfmClient", function () {
           client.should.include.property('user', 'user');
         });
       });
-
-      describe("but the new keyword wasn't used", function () {
-
-        xit("still returns an instanceof LastfmUser", function () {
-          // var client = LastfmUserClient('apiKey', 'user');
-          // client.should.be.an.instanceof(LastfmUserClient);
-        });
-      });
     });
   });
 });
