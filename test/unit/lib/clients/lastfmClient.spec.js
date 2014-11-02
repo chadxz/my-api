@@ -71,6 +71,9 @@ describe("lastfmClient", function () {
           var apiUrl = client.getApiCallUrl('my.method');
           should.exist(apiUrl);
           var parsedApiUrl = url.parse(apiUrl, true);
+          parsedApiUrl.protocol.should.equal('https:');
+          parsedApiUrl.host.should.equal('ws.audioscrobbler.com');
+          parsedApiUrl.pathname.should.equal('/2.0/');
           parsedApiUrl.query.should.deep.equal({
             method: 'my.method',
             api_key: providedApiKey,
@@ -89,6 +92,9 @@ describe("lastfmClient", function () {
           });
           should.exist(apiUrl);
           var parsedApiUrl = url.parse(apiUrl, true);
+          parsedApiUrl.protocol.should.equal('https:');
+          parsedApiUrl.host.should.equal('ws.audioscrobbler.com');
+          parsedApiUrl.pathname.should.equal('/2.0/');
           parsedApiUrl.query.should.deep.equal({
             method: 'my.method',
             api_key: providedApiKey,
