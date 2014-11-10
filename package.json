@@ -9,12 +9,12 @@
     "lint": "jshint . && jscs .",
     "jshint": "jshint .",
     "jscs": "jscs .",
-    "cover": "istanbul cover --report html _mocha"
+    "cover": "istanbul cover --report html _mocha",
+    "precommit": "./precommit.sh",
+    "precommit-scripts": "npm run jshint && npm run jscs && npm run test"
   },
   "precommit": [
-    "test",
-    "jshint",
-    "jscs"
+    "precommit"
   ],
   "dependencies": {
     "body-parser": "^1.9.0",
