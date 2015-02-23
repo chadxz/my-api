@@ -55,5 +55,5 @@
   "requireSpaceAfterLineComment": true,
   "validateParameterSeparator": ", ",
   "validateIndentation": 2,
-  "excludeFiles": ["node_modules/**", "coverage/**"]
+  "excludeFiles": ["node_modules/**", "coverage/**", ".c9/**"]
 }
