@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    title My API
+  body
+    h1 My API
+    p The API is running! If you'd like to manage things, please log in.
+    form(action="/" method="POST")
+        input(type="password" name="password" placeholder="password")
+        input(type="hidden" name="username" value="username")
+        input(type="hidden" name="_csrf" value="#{csrfToken}")
+        button(type="submit") Log In

@@ -15,6 +15,15 @@ module.exports = {
     },
     pinboard: {
       apiToken: ''
+    },
+    pocket: {
+      consumerKey: ''
+    },
+    session: {
+      secret: 'asldfkjawelgkawjelfsdkvjalkwjvlawkhnaw4elgnava0239fna0239nsdv'
+    },
+    auth: {
+      password: 'foo'
     }
   }
 };

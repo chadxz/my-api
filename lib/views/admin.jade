@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="x-ua-compatible" content="ie=edge")
+    meta(name="viewport" content="width=device-width,initial-scale=1")
+    title My API - Admin
+  body
+    h1 My API - Admin
+    if !pocketUsername
+      p Pocket integration is not currently configured.&nbsp;
+        a(href="/pocket/authorize") Click here to set it up.
+    else
+      p Pocket is currently linked to user #{pocketUsername}.&nbsp;
+        a(href="/pocket/unlink") Click here to unlink.
+    a(href="/logout") logout

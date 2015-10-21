@@ -9,21 +9,22 @@
     "lint": "jshint . && jscs .",
     "jshint": "jshint .",
     "jscs": "jscs .",
-    "cover": "istanbul cover --report html _mocha",
-    "precommit": "./precommit.sh",
-    "precommit-scripts": "npm run jshint && npm run jscs && npm run test"
+    "cover": "istanbul cover --report html _mocha"
   },
-  "precommit": [
-    "precommit"
-  ],
   "dependencies": {
     "body-parser": "^1.9.0",
     "compression": "^1.1.0",
     "config": "^1.2.3",
+    "cookie-parser": "^1.4.0",
     "cors": "^2.4.2",
+    "csurf": "^1.8.3",
     "express": "^4.9.5",
+    "express-session": "^1.11.3",
+    "jade": "^1.11.0",
     "lodash": "^2.4.1",
     "method-override": "^2.2.0",
+    "passport": "^0.3.0",
+    "passport-local": "^1.0.0",
     "redis": "^0.12.1",
     "request": "^2.45.0"
   },
@@ -32,8 +33,7 @@
     "istanbul": "^0.3.2",
     "jscs": "^1.6.2",
     "jshint": "^2.5.6",
-    "mocha": "^2.0.0",
-    "precommit-hook": "^1.0.7"
+    "mocha": "^2.0.0"
   },
   "license": "MIT"
 }

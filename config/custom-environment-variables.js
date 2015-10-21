@@ -11,6 +11,12 @@ module.exports = {
     },
     redis: {
       url: 'REDISTOGO_URL'
+    },
+    pocket: {
+      consumerKey: 'POCKET_CONSUMER_KEY'
+    },
+    auth: {
+      password: 'AUTH_PASSWORD'
     }
   }
 };

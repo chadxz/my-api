@@ -9,6 +9,8 @@ var LastfmClient = require('./lib/clients/lastfmClient').User;
 var PinboardWorker = require('./lib/workers/pinboardWorker');
 var PinboardService = require('./lib/services/pinboardService');
 var PinboardClient = require('./lib/clients/pinboardClient');
+var PocketService = require('./lib/services/pocketService');
+var PocketClient = require('./lib/clients/pocketClient');
 var tools = require('./lib/tools');
 var vars = require('./lib/vars');
 
@@ -33,6 +35,7 @@ if (redisConfig.password) {
 // setup api clients
 clients.lastfm = new LastfmClient(config.lastfm.apiKey, config.lastfm.user);
 clients.pinboard = new PinboardClient(config.pinboard.apiToken);
+clients.pocket = new PocketClient(config.pocket.consumerKey);
 
 // setup workers
 workers.lastfm = new LastfmWorker({
@@ -57,6 +60,11 @@ services.lastfm = new LastfmService({
 });
 
 services.pinboard = new PinboardService({
+  redisClient: clients.redis
+});
+
+services.pocket = new PocketService({
+  pocketClient: clients.pocket,
   redisClient: clients.redis
 });
 
