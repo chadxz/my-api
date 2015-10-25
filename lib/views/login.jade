@@ -9,7 +9,7 @@ html(lang="en")
     h1 My API
     p The API is running! If you'd like to manage things, please log in.
     form(action="/" method="POST")
-        input(type="password" name="password" placeholder="password")
+        input(tabindex="0" autofocus type="password" name="password" placeholder="password")
         input(type="hidden" name="username" value="username")
         input(type="hidden" name="_csrf" value="#{csrfToken}")
         button(type="submit") Log In
