@@ -11,6 +11,7 @@ var PinboardService = require('./lib/services/pinboardService');
 var PinboardClient = require('./lib/clients/pinboardClient');
 var PocketService = require('./lib/services/pocketService');
 var PocketClient = require('./lib/clients/pocketClient');
+var PocketWorker = require('./lib/workers/pocketWorker');
 var tools = require('./lib/tools');
 var vars = require('./lib/vars');
 
@@ -50,9 +51,11 @@ workers.pinboard = new PinboardWorker({
   callback: tools.getLoggingWorkerCallback(PinboardWorker.name)
 });
 
-// start workers
-workers.lastfm.start(vars.lastfm.rateLimitsMS.defaultLimit * 5);
-workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
+workers.pocket = new PocketWorker({
+  redisClient: clients.redis,
+  pocketClient: clients.pocket,
+  callback: tools.getLoggingWorkerCallback(PocketWorker.name)
+});
 
 // setup services
 services.lastfm = new LastfmService({
@@ -65,8 +68,14 @@ services.pinboard = new PinboardService({
 
 services.pocket = new PocketService({
   pocketClient: clients.pocket,
-  redisClient: clients.redis
+  redisClient: clients.redis,
+  pocketWorker: workers.pocket
 });
+
+// start workers
+workers.lastfm.start(vars.lastfm.rateLimitsMS.defaultLimit * 5);
+workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
+services.pocket.startWorker();
 
 // initialize app
 app = require('./lib/app')(services);

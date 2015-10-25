@@ -38,7 +38,6 @@
   "disallowMultipleLineBreaks": true,
   "requireBlocksOnNewline": 1,
   "requireSpacesInsideObjectBrackets": "allButNested",
-  "requireSpacesInsideArrayBrackets": "allButNested",
   "disallowQuotedKeysInObjects": "allButReserved",
   "disallowSpaceAfterObjectKeys": true,
   "requireSpaceBeforeObjectValues": true,
