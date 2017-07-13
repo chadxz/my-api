@@ -1,7 +1,5 @@
 'use strict';
-var chai = require('chai');
-chai.config.includeStack = true;
-var expect = chai.expect;
+var assert = require('power-assert');
 
 describe("tools", function () {
 
@@ -13,7 +11,7 @@ describe("tools", function () {
 
       it("returns the parsed representation", function () {
         var result = tools.parseJSON('{ "foo": [ 1, 2, 3 ] }');
-        expect(result).to.deep.equal({
+        assert.deepEqual(result, {
           foo: [ 1, 2, 3 ]
         });
       });
@@ -23,7 +21,7 @@ describe("tools", function () {
 
       it("returns null", function () {
         var result = tools.parseJSON('{ "foo": "bar"');
-        expect(result).to.equal(null);
+        assert.equal(result, null);
       });
     });
   });
