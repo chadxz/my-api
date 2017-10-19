@@ -32,6 +32,7 @@
     "request": "^2.83.0"
   },
   "devDependencies": {
+    "codecov": "^2.3.1",
     "env-test": "^1.0.0",
     "eslint": "^4.9.0",
     "eslint-config-prettier": "^2.6.0",
