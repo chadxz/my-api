@@ -1,0 +1,17 @@
+---
+root: true
+extends:
+  - standard
+  - prettier
+  - prettier/standard
+plugins:
+  - standard
+  - prettier
+rules:
+  prettier/prettier: error
+env:
+  es6: true
+  node: true
+parserOptions:
+  ecmaVersion: 8
+  sourceType: script
