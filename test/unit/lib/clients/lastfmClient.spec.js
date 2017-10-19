@@ -10,6 +10,7 @@ describe("lastfmClient", function() {
     describe("when not passed apiKey param", function() {
       it("throws a RequiredParamMissingError", function() {
         assert.throws(function() {
+          // eslint-disable-next-line no-new
           new LastfmUserClient(null, "user");
         }, errors.RequiredParamMissingError);
       });
@@ -18,6 +19,7 @@ describe("lastfmClient", function() {
     describe("when not passed 'user' param", function() {
       it("throws a RequiredParamMissingError", function() {
         assert.throws(function() {
+          // eslint-disable-next-line no-new
           new LastfmUserClient("apiKey");
         }, errors.RequiredParamMissingError);
       });
