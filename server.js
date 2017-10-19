@@ -1,19 +1,19 @@
-'use strict';
+"use strict";
 
-var _ = require('lodash');
-var config = require('config').myApi;
-var redis = require('redis');
-var LastfmWorker = require('./lib/workers/lastfmWorker');
-var LastfmService = require('./lib/services/lastfmService');
-var LastfmClient = require('./lib/clients/lastfmClient').User;
-var PinboardWorker = require('./lib/workers/pinboardWorker');
-var PinboardService = require('./lib/services/pinboardService');
-var PinboardClient = require('./lib/clients/pinboardClient');
-var PocketService = require('./lib/services/pocketService');
-var PocketClient = require('./lib/clients/pocketClient');
-var PocketWorker = require('./lib/workers/pocketWorker');
-var tools = require('./lib/tools');
-var vars = require('./lib/vars');
+var _ = require("lodash");
+var config = require("config").myApi;
+var redis = require("redis");
+var LastfmWorker = require("./lib/workers/lastfmWorker");
+var LastfmService = require("./lib/services/lastfmService");
+var LastfmClient = require("./lib/clients/lastfmClient").User;
+var PinboardWorker = require("./lib/workers/pinboardWorker");
+var PinboardService = require("./lib/services/pinboardService");
+var PinboardClient = require("./lib/clients/pinboardClient");
+var PocketService = require("./lib/services/pocketService");
+var PocketClient = require("./lib/clients/pocketClient");
+var PocketWorker = require("./lib/workers/pocketWorker");
+var tools = require("./lib/tools");
+var vars = require("./lib/vars");
 
 var app;
 var port = config.port;
@@ -78,9 +78,9 @@ workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
 services.pocket.startWorker();
 
 // initialize app
-app = require('./lib/app')(services);
+app = require("./lib/app")(services);
 
 // start http server
-app.listen(port, function () {
-  console.log('listening on port ' + port);
+app.listen(port, function() {
+  console.log("listening on port " + port);
 });

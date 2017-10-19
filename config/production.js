@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 module.exports = {
   // placeholder to suppress node-config warning about no config for environment

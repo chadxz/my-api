@@ -1,25 +1,21 @@
-'use strict';
-var assert = require('power-assert');
+"use strict";
+var assert = require("power-assert");
 
-describe("tools", function () {
+describe("tools", function() {
+  var tools = require("../../../lib/tools");
 
-  var tools = require('../../../lib/tools');
-
-  describe("parseJSON", function () {
-
-    describe("when passed valid JSON", function () {
-
-      it("returns the parsed representation", function () {
+  describe("parseJSON", function() {
+    describe("when passed valid JSON", function() {
+      it("returns the parsed representation", function() {
         var result = tools.parseJSON('{ "foo": [ 1, 2, 3 ] }');
         assert.deepEqual(result, {
-          foo: [ 1, 2, 3 ]
+          foo: [1, 2, 3]
         });
       });
     });
 
-    describe("when passed invalid JSON", function () {
-
-      it("returns null", function () {
+    describe("when passed invalid JSON", function() {
+      it("returns null", function() {
         var result = tools.parseJSON('{ "foo": "bar"');
         assert.equal(result, null);
       });

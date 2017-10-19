@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 module.exports = {
   myApi: {
-    port: 'PORT',
+    port: "PORT",
     lastfm: {
-      apiKey: 'LASTFM_API_KEY'
+      apiKey: "LASTFM_API_KEY"
     },
     pinboard: {
-      apiToken: 'PINBOARD_API_TOKEN'
+      apiToken: "PINBOARD_API_TOKEN"
     },
     redis: {
-      url: 'REDISTOGO_URL'
+      url: "REDISTOGO_URL"
     },
     pocket: {
-      consumerKey: 'POCKET_CONSUMER_KEY'
+      consumerKey: "POCKET_CONSUMER_KEY"
     },
     auth: {
-      password: 'AUTH_PASSWORD'
+      password: "AUTH_PASSWORD"
     }
   }
 };
