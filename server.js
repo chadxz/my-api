@@ -24,7 +24,8 @@ var workers = {};
 var services = {};
 
 Raven.config(config.sentry.dsn, {
-  environment: config.environment
+  environment: config.environment,
+  debug: config.environment === "development"
 }).install();
 
 // setup redis client
