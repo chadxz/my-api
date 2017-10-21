@@ -1,6 +1,6 @@
 "use strict";
 
-var _ = require("lodash");
+var { cloneDeep } = require("lodash");
 var config = require("config").myApi;
 var redis = require("redis");
 var LastfmWorker = require("./lib/workers/lastfmWorker");
@@ -17,14 +17,17 @@ var vars = require("./lib/vars");
 
 var app;
 var port = config.port;
-var redisConfig = _.cloneDeep(config.redis);
+var redisConfig = cloneDeep(config.redis);
 var clients = {};
 var workers = {};
 var services = {};
 
 // setup redis client
 if (redisConfig.url) {
-  redisConfig = _.extend(redisConfig, tools.parseRedisUrl(config.redis.url));
+  redisConfig = Object.assign(
+    redisConfig,
+    tools.parseRedisUrl(config.redis.url)
+  );
 }
 
 clients.redis = redis.createClient(redisConfig.port, redisConfig.host);
