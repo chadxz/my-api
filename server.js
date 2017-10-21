@@ -3,6 +3,7 @@
 var { cloneDeep } = require("lodash");
 var config = require("config").myApi;
 var redis = require("redis");
+var Raven = require("raven");
 var LastfmWorker = require("./lib/workers/lastfmWorker");
 var LastfmService = require("./lib/services/lastfmService");
 var LastfmClient = require("./lib/clients/lastfmClient").User;
@@ -21,6 +22,11 @@ var redisConfig = cloneDeep(config.redis);
 var clients = {};
 var workers = {};
 var services = {};
+
+Raven.config(config.sentry.dsn, {
+  environment: config.environment,
+  debug: config.environment === "development"
+}).install();
 
 // setup redis client
 if (redisConfig.url) {

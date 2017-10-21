@@ -3,6 +3,7 @@
 module.exports = {
   myApi: {
     port: "PORT",
+    environment: "NODE_ENV",
     lastfm: {
       apiKey: "LASTFM_API_KEY"
     },
