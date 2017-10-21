@@ -28,6 +28,7 @@
     "method-override": "^2.2.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "raven": "^2.2.1",
     "redis": "^2.8.0",
     "request": "^2.83.0"
   },

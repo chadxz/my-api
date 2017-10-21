@@ -3,6 +3,7 @@
 module.exports = {
   myApi: {
     port: 3000,
+    environment: "development",
     redis: {
       port: 6379,
       host: "localhost",
@@ -24,6 +25,9 @@ module.exports = {
     },
     auth: {
       password: "foo"
+    },
+    sentry: {
+      dsn: ""
     }
   }
 };
