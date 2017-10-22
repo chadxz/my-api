@@ -13,3 +13,9 @@ programmatic access to data about me across various services that I use.
 [Codecov Link]: https://codecov.io/gh/chadxz/my-api
 [Greenkeeper Image]: https://badges.greenkeeper.io/chadxz/my-api.svg
 [Greenkeeper Link]: https://greenkeeper.io/
+
+Coming soon:
+
+- Pocketcasts integration
+- Revamp for ES7
+- integrated website
