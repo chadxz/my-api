@@ -1,27 +1,25 @@
 "use strict";
+const { cloneDeep } = require("lodash");
+const config = require("config").myApi;
+const redis = require("redis");
+const Raven = require("raven");
+const LastfmWorker = require("./lib/workers/lastfmWorker");
+const LastfmService = require("./lib/services/lastfmService");
+const LastfmClient = require("./lib/clients/lastfmClient").User;
+const PinboardWorker = require("./lib/workers/pinboardWorker");
+const PinboardService = require("./lib/services/pinboardService");
+const PinboardClient = require("./lib/clients/pinboardClient");
+const PocketService = require("./lib/services/pocketService");
+const PocketClient = require("./lib/clients/pocketClient");
+const PocketWorker = require("./lib/workers/pocketWorker");
+const tools = require("./lib/tools");
+const vars = require("./lib/vars");
 
-var { cloneDeep } = require("lodash");
-var config = require("config").myApi;
-var redis = require("redis");
-var Raven = require("raven");
-var LastfmWorker = require("./lib/workers/lastfmWorker");
-var LastfmService = require("./lib/services/lastfmService");
-var LastfmClient = require("./lib/clients/lastfmClient").User;
-var PinboardWorker = require("./lib/workers/pinboardWorker");
-var PinboardService = require("./lib/services/pinboardService");
-var PinboardClient = require("./lib/clients/pinboardClient");
-var PocketService = require("./lib/services/pocketService");
-var PocketClient = require("./lib/clients/pocketClient");
-var PocketWorker = require("./lib/workers/pocketWorker");
-var tools = require("./lib/tools");
-var vars = require("./lib/vars");
-
-var app;
-var port = config.port;
-var redisConfig = cloneDeep(config.redis);
-var clients = {};
-var workers = {};
-var services = {};
+const port = config.port;
+let redisConfig = cloneDeep(config.redis);
+const clients = {};
+const workers = {};
+const services = {};
 
 Raven.config(config.sentry.dsn, {
   environment: config.environment,
@@ -87,7 +85,7 @@ workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
 services.pocket.startWorker();
 
 // initialize app
-app = require("./lib/app")(services);
+const app = require("./lib/app")(services);
 
 // start http server
 app.listen(port, function() {
