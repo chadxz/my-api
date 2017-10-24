@@ -9,17 +9,13 @@ const LastfmClient = require("./lib/clients/lastfmClient").User;
 const PinboardWorker = require("./lib/workers/pinboardWorker");
 const PinboardService = require("./lib/services/pinboardService");
 const PinboardClient = require("./lib/clients/pinboardClient");
+const PocketWorker = require("./lib/workers/pocketWorker");
 const PocketService = require("./lib/services/pocketService");
 const PocketClient = require("./lib/clients/pocketClient");
-const PocketWorker = require("./lib/workers/pocketWorker");
-const tools = require("./lib/tools");
+const { getLoggingWorkerCallback, parseRedisUrl } = require("./lib/tools");
 const vars = require("./lib/vars");
 
-const port = config.port;
 let redisConfig = cloneDeep(config.redis);
-const clients = {};
-const workers = {};
-const services = {};
 
 Raven.config(config.sentry.dsn, {
   environment: config.environment,
@@ -27,68 +23,55 @@ Raven.config(config.sentry.dsn, {
   release: config.heroku.slug
 }).install();
 
-// setup redis client
 if (redisConfig.url) {
-  redisConfig = Object.assign(
-    redisConfig,
-    tools.parseRedisUrl(config.redis.url)
-  );
+  redisConfig = Object.assign(redisConfig, parseRedisUrl(config.redis.url));
 }
 
-clients.redis = redis.createClient(redisConfig.port, redisConfig.host);
+const clients = {
+  redis: redis.createClient(redisConfig.port, redisConfig.host),
+  lastfm: new LastfmClient(config.lastfm.apiKey, config.lastfm.user),
+  pinboard: new PinboardClient(config.pinboard.apiToken),
+  pocket: new PocketClient(config.pocket.consumerKey)
+};
 
 if (redisConfig.password) {
   clients.redis.auth(redisConfig.password);
 }
 
-// setup api clients
-clients.lastfm = new LastfmClient(config.lastfm.apiKey, config.lastfm.user);
-clients.pinboard = new PinboardClient(config.pinboard.apiToken);
-clients.pocket = new PocketClient(config.pocket.consumerKey);
+const workers = {
+  lastfm: new LastfmWorker({
+    redisClient: clients.redis,
+    lastfmClient: clients.lastfm,
+    callback: getLoggingWorkerCallback(LastfmWorker.name)
+  }),
+  pinboard: new PinboardWorker({
+    redisClient: clients.redis,
+    pinboardClient: clients.pinboard,
+    callback: getLoggingWorkerCallback(PinboardWorker.name)
+  }),
+  pocket: new PocketWorker({
+    redisClient: clients.redis,
+    pocketClient: clients.pocket,
+    callback: getLoggingWorkerCallback(PocketWorker.name)
+  })
+};
 
-// setup workers
-workers.lastfm = new LastfmWorker({
-  redisClient: clients.redis,
-  lastfmClient: clients.lastfm,
-  callback: tools.getLoggingWorkerCallback(LastfmWorker.name)
-});
+const services = {
+  lastfm: new LastfmService({ redisClient: clients.redis }),
+  pinboard: new PinboardService({ redisClient: clients.redis }),
+  pocket: new PocketService({
+    pocketClient: clients.pocket,
+    redisClient: clients.redis,
+    pocketWorker: workers.pocket
+  })
+};
 
-workers.pinboard = new PinboardWorker({
-  redisClient: clients.redis,
-  pinboardClient: clients.pinboard,
-  callback: tools.getLoggingWorkerCallback(PinboardWorker.name)
-});
-
-workers.pocket = new PocketWorker({
-  redisClient: clients.redis,
-  pocketClient: clients.pocket,
-  callback: tools.getLoggingWorkerCallback(PocketWorker.name)
-});
-
-// setup services
-services.lastfm = new LastfmService({
-  redisClient: clients.redis
-});
-
-services.pinboard = new PinboardService({
-  redisClient: clients.redis
-});
-
-services.pocket = new PocketService({
-  pocketClient: clients.pocket,
-  redisClient: clients.redis,
-  pocketWorker: workers.pocket
-});
-
-// start workers
 workers.lastfm.start(vars.lastfm.rateLimitsMS.defaultLimit * 5);
 workers.pinboard.start(vars.pinboard.rateLimitsMS.defaultLimit * 3);
 services.pocket.startWorker();
 
-// initialize app
 const app = require("./lib/app")(services);
 
-// start http server
-app.listen(port, function() {
-  console.log("listening on port " + port);
+app.listen(config.port, () => {
+  console.log(`listening on port ${config.port}`);
 });
