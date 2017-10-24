@@ -18,6 +18,9 @@ module.exports = {
     },
     auth: {
       password: "AUTH_PASSWORD"
+    },
+    heroku: {
+      slug: "HEROKU_SLUG_COMMIT"
     }
   }
 };

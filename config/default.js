@@ -28,6 +28,9 @@ module.exports = {
     },
     sentry: {
       dsn: ""
+    },
+    heroku: {
+      slug: ""
     }
   }
 };
