@@ -23,7 +23,8 @@ const services = {};
 
 Raven.config(config.sentry.dsn, {
   environment: config.environment,
-  debug: config.environment === "development"
+  debug: config.environment === "development",
+  release: config.heroku.slug
 }).install();
 
 // setup redis client
