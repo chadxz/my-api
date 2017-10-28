@@ -3,35 +3,35 @@ const assert = require("power-assert");
 const errors = require("../../../../lib/errors");
 const url = require("url");
 
-describe("lastfmClient", function() {
+describe("lastfmClient", () => {
   const LastfmUserClient = require("../../../../lib/clients/lastfmClient").User;
 
-  describe("constructor", function() {
-    describe("when not passed apiKey param", function() {
-      it("throws a RequiredParamMissingError", function() {
-        assert.throws(function() {
+  describe("constructor", () => {
+    describe("when not passed apiKey param", () => {
+      it("throws a RequiredParamMissingError", () => {
+        assert.throws(() => {
           // eslint-disable-next-line no-new
           new LastfmUserClient(null, "user");
         }, errors.RequiredParamMissingError);
       });
     });
 
-    describe("when not passed 'user' param", function() {
-      it("throws a RequiredParamMissingError", function() {
-        assert.throws(function() {
+    describe("when not passed 'user' param", () => {
+      it("throws a RequiredParamMissingError", () => {
+        assert.throws(() => {
           // eslint-disable-next-line no-new
           new LastfmUserClient("apiKey");
         }, errors.RequiredParamMissingError);
       });
     });
 
-    describe("when passed all required params", function() {
-      it("returns an instanceof LastfmUser", function() {
+    describe("when passed all required params", () => {
+      it("returns an instanceof LastfmUser", () => {
         const client = new LastfmUserClient("apiKey", "user");
         assert(client instanceof LastfmUserClient);
       });
 
-      it("has apiKey and user public properties set", function() {
+      it("has apiKey and user public properties set", () => {
         const client = new LastfmUserClient("apiKey", "user");
         assert.equal(client.apiKey, "apiKey");
         assert.equal(client.user, "user");
@@ -39,20 +39,20 @@ describe("lastfmClient", function() {
     });
   });
 
-  describe("the getApiCallUrl public method", function() {
-    describe("when called without the 'method' param", function() {
-      it("throws a RequiredParamMissingError", function() {
+  describe("the getApiCallUrl public method", () => {
+    describe("when called without the 'method' param", () => {
+      it("throws a RequiredParamMissingError", () => {
         const client = new LastfmUserClient("myApiKey", "myUser");
 
-        assert.throws(function() {
+        assert.throws(() => {
           client.getApiCallUrl();
         }, errors.RequiredParamMissingError);
       });
     });
 
-    describe("when called with required params", function() {
-      describe("and no additionalQueryParams", function() {
-        it("generates a Last.fm api url for the specified method", function() {
+    describe("when called with required params", () => {
+      describe("and no additionalQueryParams", () => {
+        it("generates a Last.fm api url for the specified method", () => {
           const client = new LastfmUserClient("myApiKey", "myUser");
 
           const apiUrl = client.getApiCallUrl("my.method");
@@ -70,8 +70,8 @@ describe("lastfmClient", function() {
         });
       });
 
-      describe("and additionalQueryParams", function() {
-        it("generates a Last.fm api url for the specified method including the additionalQueryParams", function() {
+      describe("and additionalQueryParams", () => {
+        it("generates a Last.fm api url for the specified method including the additionalQueryParams", () => {
           const client = new LastfmUserClient("myApiKey", "myUser");
 
           const apiUrl = client.getApiCallUrl("my.method", {
