@@ -19,6 +19,9 @@ module.exports = {
     auth: {
       password: "AUTH_PASSWORD"
     },
+    sentry: {
+      dsn: "SENTRY_DSN"
+    },
     heroku: {
       slug: "HEROKU_SLUG_COMMIT"
     }
