@@ -20,7 +20,7 @@ let redisConfig = cloneDeep(config.redis);
 Raven.config(config.sentry.dsn, {
   environment: config.environment,
   debug: config.environment === "development",
-  release: config.heroku.slug
+  release: config.commit
 }).install();
 
 if (redisConfig.url) {

@@ -22,8 +22,6 @@ module.exports = {
     sentry: {
       dsn: "SENTRY_DSN"
     },
-    heroku: {
-      slug: "HEROKU_SLUG_COMMIT"
-    }
+    commit: "OPENSHIFT_BUILD_COMMIT"
   }
 };
