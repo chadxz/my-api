@@ -11,7 +11,7 @@ module.exports = {
       apiToken: "PINBOARD_API_TOKEN"
     },
     redis: {
-      url: "REDISTOGO_URL"
+      url: "REDIS_URL"
     },
     pocket: {
       consumerKey: "POCKET_CONSUMER_KEY"
