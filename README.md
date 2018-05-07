@@ -20,15 +20,10 @@ Coming soon:
 - Revamp for ES7
 - integrated website
 
-### Enabled heroku addons and labs
+### deployment
 
-```sh
-# for sentry release tracking
-$ heroku labs:enable runtime-dyno-metadata
+This app is currently being deployed to Openshift Online. It requires a
+supporting redis instance, but both this app and redis can be run on Openshift
+Online's free tier.
 
-# for sentry deploy notifications
-$ heroku addons:create deployhooks:http --url <sentry-notify-url>
-
-# for redis
-$ heroku addons:create redistogo
-```
+It can be seen at [https://my-api-my-api.193b.starter-ca-central-1.openshiftapps.com/](https://my-api-my-api.193b.starter-ca-central-1.openshiftapps.com/)

@@ -12,8 +12,3 @@ after_script:
 env:
   global:
     secure: Z/MabBFG4JXsmpbXA02k+WVsvPyx2fGn8clouFGgnTnRtcTVFCdQuVR90LlUvFDxcsPAdhZchlimwe1EEcgksl0PohN4P+NoHQYW/nIthB9La81eht9K/xsiMJ+w5KAfJJvW1WPAITGUG9YOEBUYRMrqYG8CYJKmAdXKCXb7cKo=
-deploy:
-  provider: heroku
-  app: immense-refuge-7911
-  api_key:
-    secure: O5Ll2IA+aB7sDO115IRTglb7Hg4PVCQNrc4sRoAa2vYqEBNhvwQmOI6kQR7MNShNI7zafxR4wuHctO5gPTs4wM6dFJGoZW4mM1txzVT64RBM2g3PpUDMU1X9JwSjL+iRoQU09QGGT2OhLnt4ktmJq9N8txdCR56avjCl891IScw=
