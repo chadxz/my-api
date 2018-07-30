@@ -1,5 +1,6 @@
 {
   "type": "docker",
+  "alias": "chadxz",
   "env": {
     "REDIS_URL": "@redis_url",
     "PINBOARD_API_TOKEN": "@pinboard_api_token",
