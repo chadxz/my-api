@@ -22,8 +22,5 @@ Coming soon:
 
 ### deployment
 
-This app is currently being deployed to Openshift Online. It requires a
-supporting redis instance, but both this app and redis can be run on Openshift
-Online's free tier.
-
-It can be seen at [https://my-api-my-api.193b.starter-ca-central-1.openshiftapps.com/](https://my-api-my-api.193b.starter-ca-central-1.openshiftapps.com/)
+This app is currently being deployed to zeit now, backed by redis labs free
+redis instance.

@@ -1,4 +1,4 @@
-FROM node:8.11.1
+FROM node:8.11.3
 
 # disable npm update check
 ENV NO_UPDATE_NOTIFIER 1
