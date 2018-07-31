@@ -15,7 +15,7 @@ deploy:
     script: >
       now --public --token $ZEIT_TOKEN &&
       now alias --token $ZEIT_TOKEN &&
-      now rm my-api --token $ZEIT_TOKEN --safe --yes
+      now rm my-api --safe --yes --token $ZEIT_TOKEN
     on:
       all_branches: false
       branch: master
