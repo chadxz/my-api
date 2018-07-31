@@ -9,6 +9,16 @@ script:
   - npm run ci-test
 after_script:
   - greenkeeper-lockfile-upload
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: >
+      now --public --token $ZEIT_TOKEN &&
+      now alias --token $ZEIT_TOKEN &&
+      now rm my-api --token $ZEIT_TOKEN --safe --yes
+    on:
+      all_branches: false
+      branch: master
 env:
   global:
     - secure: Z/MabBFG4JXsmpbXA02k+WVsvPyx2fGn8clouFGgnTnRtcTVFCdQuVR90LlUvFDxcsPAdhZchlimwe1EEcgksl0PohN4P+NoHQYW/nIthB9La81eht9K/xsiMJ+w5KAfJJvW1WPAITGUG9YOEBUYRMrqYG8CYJKmAdXKCXb7cKo=
