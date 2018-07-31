@@ -23,4 +23,4 @@ Coming soon:
 ### deployment
 
 This app is currently being deployed to zeit now, backed by redis labs free
-redis instance.
+redis instance. It can be viewed at [https://chadxz.now.sh](https://chadxz.now.sh)
