@@ -2,7 +2,7 @@ language: node_js
 node_js:
   - 8
 before_install:
-  - npm install -g npm@5 greenkeeper-lockfile@1
+  - npm install -g npm@6 greenkeeper-lockfile
 before_script:
   - greenkeeper-lockfile-update
 script:
@@ -12,11 +12,7 @@ after_script:
 deploy:
   - provider: script
     skip_cleanup: true
-    script: |
-      set -e
-      now --public --token=$ZEIT_TOKEN
-      now alias --token=$ZEIT_TOKEN
-      now rm my-api --safe --yes --token=$ZEIT_TOKEN
+    script: bin/deploy.sh
     on:
       all_branches: false
       branch: master

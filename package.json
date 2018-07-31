@@ -11,7 +11,8 @@
     "cover": "nyc --reporter=html --reporter=text mocha && open coverage/index.html",
     "ci-test": "npm run lint && npm run ci-mocha && npm run ci-upload-coverage",
     "ci-mocha": "nyc mocha",
-    "ci-upload-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "ci-upload-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "deploy": "bin/deploy.sh"
   },
   "dependencies": {
     "async": "^2.6.1",
