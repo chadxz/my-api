@@ -1,5 +1,4 @@
 {
-  "type": "docker",
   "alias": "chadxz",
   "env": {
     "REDIS_URL": "@redis_url",
