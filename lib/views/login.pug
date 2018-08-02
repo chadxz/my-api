@@ -11,5 +11,5 @@ html(lang="en")
     form(action="/" method="POST")
         input(tabindex="0" autofocus type="password" name="password" placeholder="password")
         input(type="hidden" name="username" value="username")
-        input(type="hidden" name="_csrf" value="#{csrfToken}")
+        input(type="hidden" name="_csrf" value=csrfToken)
         button(type="submit") Log In
