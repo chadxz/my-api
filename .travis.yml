@@ -9,9 +9,10 @@ script:
   - npm run ci-test
 after_script:
   - greenkeeper-lockfile-upload
+before_deploy:
+  - npm install -g now
 deploy:
   - provider: script
-    skip_cleanup: true
     script: bin/deploy.sh
     on:
       all_branches: false
