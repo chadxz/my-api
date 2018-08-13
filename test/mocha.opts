@@ -1,7 +1,0 @@
---recursive
---ui bdd
---check-leaks
---reporter spec
---full-trace
---require env-test
---require intelli-espower-loader

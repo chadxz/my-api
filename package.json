@@ -6,12 +6,9 @@
   "scripts": {
     "start": "node server.js",
     "prettify": "prettier --write \"**/*.js\" \"!coverage/**\"",
-    "lint": "eslint .",
-    "test": "npm run lint && mocha",
-    "cover": "nyc --reporter=html --reporter=text mocha && open coverage/index.html",
-    "ci-test": "npm run lint && npm run ci-mocha && npm run ci-upload-coverage",
-    "ci-mocha": "nyc mocha",
-    "ci-upload-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+    "test": "jest",
+    "cover": "jest --coverage && open coverage/lcov-report/index.html",
+    "ci-test": "jest --coverage && codecov",
     "deploy": "bin/deploy.sh"
   },
   "dependencies": {
@@ -41,26 +38,48 @@
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-standard": "^11.0.0",
     "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-jest": "^21.21.0",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-standard": "^3.1.0",
-    "intelli-espower-loader": "^1.0.1",
-    "mocha": "^5.2.0",
-    "nyc": "^12.0.2",
-    "power-assert": "^1.6.0",
+    "jest": "^23.5.0",
+    "jest-runner-eslint": "^0.6.0",
     "prettier": "^1.13.7"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/chadxz/my-api.git"
   },
-  "nyc": {
-    "temp-directory": "coverage/.nyc_output"
-  },
   "engines": {
     "node": ">=8",
     "npm": ">=6"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "jest": {
+    "cacheDirectory": "node_modules/.cache",
+    "coverageDirectory": "coverage",
+    "collectCoverageFrom": [
+      "**/*.js",
+      "!node_modules/**",
+      "!test/**",
+      "!config/**",
+      "!coverage/**"
+    ],
+    "restoreMocks": true,
+    "resetModules": true,
+    "errorOnDeprecated": true,
+    "projects": [
+      {
+        "displayName": "test"
+      },
+      {
+        "displayName": "eslint",
+        "runner": "jest-runner-eslint",
+        "testMatch": [
+          "<rootDir>/**/*.js"
+        ]
+      }
+    ]
+  }
 }

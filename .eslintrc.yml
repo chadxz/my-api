@@ -4,6 +4,7 @@ extends:
   - standard
   - prettier
   - prettier/standard
+  - plugin:jest/recommended
 plugins:
   - standard
   - prettier

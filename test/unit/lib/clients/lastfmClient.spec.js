@@ -1,5 +1,4 @@
 "use strict";
-const assert = require("power-assert");
 const errors = require("../../../../lib/errors");
 const url = require("url");
 
@@ -9,32 +8,32 @@ describe("lastfmClient", () => {
   describe("constructor", () => {
     describe("when not passed apiKey param", () => {
       it("throws a RequiredParamMissingError", () => {
-        assert.throws(() => {
+        expect(() => {
           // eslint-disable-next-line no-new
           new LastfmUserClient(null, "user");
-        }, errors.RequiredParamMissingError);
+        }).toThrow(errors.RequiredParamMissingError);
       });
     });
 
     describe("when not passed 'user' param", () => {
       it("throws a RequiredParamMissingError", () => {
-        assert.throws(() => {
+        expect(() => {
           // eslint-disable-next-line no-new
           new LastfmUserClient("apiKey");
-        }, errors.RequiredParamMissingError);
+        }).toThrow(errors.RequiredParamMissingError);
       });
     });
 
     describe("when passed all required params", () => {
       it("returns an instanceof LastfmUser", () => {
         const client = new LastfmUserClient("apiKey", "user");
-        assert(client instanceof LastfmUserClient);
+        expect(client).toBeInstanceOf(LastfmUserClient);
       });
 
       it("has apiKey and user public properties set", () => {
         const client = new LastfmUserClient("apiKey", "user");
-        assert.equal(client.apiKey, "apiKey");
-        assert.equal(client.user, "user");
+        expect(client.apiKey).toEqual("apiKey");
+        expect(client.user).toEqual("user");
       });
     });
   });
@@ -44,9 +43,9 @@ describe("lastfmClient", () => {
       it("throws a RequiredParamMissingError", () => {
         const client = new LastfmUserClient("myApiKey", "myUser");
 
-        assert.throws(() => {
+        expect(() => {
           client.getApiCallUrl();
-        }, errors.RequiredParamMissingError);
+        }).toThrow(errors.RequiredParamMissingError);
       });
     });
 
@@ -56,12 +55,12 @@ describe("lastfmClient", () => {
           const client = new LastfmUserClient("myApiKey", "myUser");
 
           const apiUrl = client.getApiCallUrl("my.method");
-          assert(apiUrl);
+          expect(apiUrl).toBeTruthy();
           const parsedApiUrl = url.parse(apiUrl, true);
-          assert.equal(parsedApiUrl.protocol, "https:");
-          assert.equal(parsedApiUrl.host, "ws.audioscrobbler.com");
-          assert.equal(parsedApiUrl.pathname, "/2.0/");
-          assert.deepEqual(parsedApiUrl.query, {
+          expect(parsedApiUrl.protocol).toEqual("https:");
+          expect(parsedApiUrl.host).toEqual("ws.audioscrobbler.com");
+          expect(parsedApiUrl.pathname).toEqual("/2.0/");
+          expect(parsedApiUrl.query).toEqual({
             method: "my.method",
             api_key: "myApiKey",
             user: "myUser",
@@ -78,12 +77,12 @@ describe("lastfmClient", () => {
             something: "special",
             foo: "bar"
           });
-          assert(apiUrl);
+          expect(apiUrl).toBeTruthy();
           const parsedApiUrl = url.parse(apiUrl, true);
-          assert.equal(parsedApiUrl.protocol, "https:");
-          assert.equal(parsedApiUrl.host, "ws.audioscrobbler.com");
-          assert.equal(parsedApiUrl.pathname, "/2.0/");
-          assert.deepEqual(parsedApiUrl.query, {
+          expect(parsedApiUrl.protocol).toEqual("https:");
+          expect(parsedApiUrl.host).toEqual("ws.audioscrobbler.com");
+          expect(parsedApiUrl.pathname).toEqual("/2.0/");
+          expect(parsedApiUrl.query).toEqual({
             method: "my.method",
             api_key: "myApiKey",
             user: "myUser",
