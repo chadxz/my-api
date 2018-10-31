@@ -1,6 +1,6 @@
 "use strict";
 const errors = require("../../../../lib/errors");
-const url = require("url");
+const { URL } = require("url");
 
 describe("lastfmClient", () => {
   const LastfmUserClient = require("../../../../lib/clients/lastfmClient").User;
@@ -56,16 +56,14 @@ describe("lastfmClient", () => {
 
           const apiUrl = client.getApiCallUrl("my.method");
           expect(apiUrl).toBeTruthy();
-          const parsedApiUrl = url.parse(apiUrl, true);
+          const parsedApiUrl = new URL(apiUrl);
           expect(parsedApiUrl.protocol).toEqual("https:");
           expect(parsedApiUrl.host).toEqual("ws.audioscrobbler.com");
           expect(parsedApiUrl.pathname).toEqual("/2.0/");
-          expect(parsedApiUrl.query).toEqual({
-            method: "my.method",
-            api_key: "myApiKey",
-            user: "myUser",
-            format: "json"
-          });
+          expect(parsedApiUrl.searchParams.get("method")).toEqual("my.method");
+          expect(parsedApiUrl.searchParams.get("api_key")).toEqual("myApiKey");
+          expect(parsedApiUrl.searchParams.get("user")).toEqual("myUser");
+          expect(parsedApiUrl.searchParams.get("format")).toEqual("json");
         });
       });
 
@@ -78,18 +76,16 @@ describe("lastfmClient", () => {
             foo: "bar"
           });
           expect(apiUrl).toBeTruthy();
-          const parsedApiUrl = url.parse(apiUrl, true);
+          const parsedApiUrl = new URL(apiUrl);
           expect(parsedApiUrl.protocol).toEqual("https:");
           expect(parsedApiUrl.host).toEqual("ws.audioscrobbler.com");
           expect(parsedApiUrl.pathname).toEqual("/2.0/");
-          expect(parsedApiUrl.query).toEqual({
-            method: "my.method",
-            api_key: "myApiKey",
-            user: "myUser",
-            format: "json",
-            something: "special",
-            foo: "bar"
-          });
+          expect(parsedApiUrl.searchParams.get("method")).toEqual("my.method");
+          expect(parsedApiUrl.searchParams.get("api_key")).toEqual("myApiKey");
+          expect(parsedApiUrl.searchParams.get("user")).toEqual("myUser");
+          expect(parsedApiUrl.searchParams.get("format")).toEqual("json");
+          expect(parsedApiUrl.searchParams.get("something")).toEqual("special");
+          expect(parsedApiUrl.searchParams.get("foo")).toEqual("bar");
         });
       });
     });
