@@ -16,7 +16,7 @@
     "body-parser": "^1.18.3",
     "common-tags": "^1.8.0",
     "compression": "^1.7.3",
-    "config": "^2.0.1",
+    "config": "^3.0.0",
     "cookie-parser": "^1.4.0",
     "cors": "^2.4.2",
     "csurf": "^1.8.3",
