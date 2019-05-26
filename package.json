@@ -12,7 +12,7 @@
     "deploy": "bin/deploy.sh"
   },
   "dependencies": {
-    "async": "^2.6.1",
+    "async": "^3.0.1",
     "body-parser": "^1.18.3",
     "common-tags": "^1.8.0",
     "compression": "^1.7.3",
