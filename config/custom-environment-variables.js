@@ -22,6 +22,9 @@ module.exports = {
     sentry: {
       dsn: "SENTRY_DSN"
     },
-    commit: "OPENSHIFT_BUILD_COMMIT"
+    session: {
+      secret: "SESSION_SECRET"
+    },
+    commit: "COMMIT"
   }
 };

@@ -2,5 +2,6 @@ node_modules
 npm-debug.log
 coverage
 .idea
+.github
 config/local.js
-version.txt
+Makefile

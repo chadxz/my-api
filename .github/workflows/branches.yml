@@ -1,0 +1,28 @@
+name: Build the Docker image and run the tests
+on: [push]
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the git repository
+        uses: actions/checkout@v1
+
+      - name: Login to the Docker repository
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} | \
+            docker login docker.pkg.github.com --username ${{ github.actor }} --password-stdin
+
+      - name: Execute the continuous integration process
+        run: make ci
+
+      - name: Upload code coverage results
+        uses: codecov/codecov-action@v1.0.3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/clover.xml
+
+      - name: Save the application version as an artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: version
+          path: version.txt
