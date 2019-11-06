@@ -8,8 +8,7 @@
     "prettify": "prettier --write \"**/*.js\" \"!coverage/**\"",
     "test": "jest",
     "cover": "jest --coverage && open coverage/lcov-report/index.html",
-    "ci-test": "jest --coverage && codecov",
-    "deploy": "bin/deploy.sh"
+    "ci-test": "jest --coverage --ci"
   },
   "dependencies": {
     "acorn": "^7.1.0",
@@ -53,7 +52,7 @@
     "url": "https://github.com/chadxz/my-api.git"
   },
   "engines": {
-    "node": ">=8",
+    "node": ">=10",
     "npm": ">=6"
   },
   "license": "MIT",

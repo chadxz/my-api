@@ -1,0 +1,13 @@
+---
+version: "3"
+services:
+  my-api:
+    image: my-api/my-api
+    ports:
+      - 3000:3000
+    environment:
+      LASTFM_API_KEY:
+      PINBOARD_API_TOKEN:
+      REDIS_URL:
+      POCKET_CONSUMER_KEY:
+      SENTRY_DSN:
