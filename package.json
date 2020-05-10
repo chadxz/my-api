@@ -21,7 +21,7 @@
     "cookie-parser": "^1.4.0",
     "cors": "^2.8.5",
     "csurf": "^1.8.3",
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "express-session": "^1.15.6",
     "lodash": "^4.17.15",
     "method-override": "^3.0.0",
