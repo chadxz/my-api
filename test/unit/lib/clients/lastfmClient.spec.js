@@ -73,7 +73,7 @@ describe("lastfmClient", () => {
 
           const apiUrl = client.getApiCallUrl("my.method", {
             something: "special",
-            foo: "bar"
+            foo: "bar",
           });
           expect(apiUrl).toBeTruthy();
           const parsedApiUrl = new URL(apiUrl);

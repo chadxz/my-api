@@ -5,23 +5,23 @@ module.exports = {
     port: "PORT",
     environment: "NODE_ENV",
     lastfm: {
-      apiKey: "LASTFM_API_KEY"
+      apiKey: "LASTFM_API_KEY",
     },
     pinboard: {
-      apiToken: "PINBOARD_API_TOKEN"
+      apiToken: "PINBOARD_API_TOKEN",
     },
     redis: {
-      url: "REDIS_URL"
+      url: "REDIS_URL",
     },
     pocket: {
-      consumerKey: "POCKET_CONSUMER_KEY"
+      consumerKey: "POCKET_CONSUMER_KEY",
     },
     auth: {
-      password: "AUTH_PASSWORD"
+      password: "AUTH_PASSWORD",
     },
     sentry: {
-      dsn: "SENTRY_DSN"
+      dsn: "SENTRY_DSN",
     },
-    commit: "OPENSHIFT_BUILD_COMMIT"
-  }
+    commit: "OPENSHIFT_BUILD_COMMIT",
+  },
 };

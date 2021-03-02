@@ -8,7 +8,7 @@ describe("tools", () => {
       it("returns the parsed representation", () => {
         const result = tools.parseJSON('{ "foo": [ 1, 2, 3 ] }');
         expect(result).toEqual({
-          foo: [1, 2, 3]
+          foo: [1, 2, 3],
         });
       });
     });

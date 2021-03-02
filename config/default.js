@@ -8,27 +8,27 @@ module.exports = {
       port: 6379,
       host: "localhost",
       password: "",
-      url: "" // optional, useful for environments like Heroku that provide urls
+      url: "", // optional, useful for environments like Heroku that provide urls
     },
     lastfm: {
       apiKey: "",
-      user: "chadxz"
+      user: "chadxz",
     },
     pinboard: {
-      apiToken: ""
+      apiToken: "",
     },
     pocket: {
-      consumerKey: ""
+      consumerKey: "",
     },
     session: {
-      secret: "asldfkjawelgkawjelfsdkvjalkwjvlawkhnaw4elgnava0239fna0239nsdv"
+      secret: "asldfkjawelgkawjelfsdkvjalkwjvlawkhnaw4elgnava0239fna0239nsdv",
     },
     auth: {
-      password: "foo"
+      password: "foo",
     },
     sentry: {
-      dsn: ""
+      dsn: "",
     },
-    commit: ""
-  }
+    commit: "",
+  },
 };

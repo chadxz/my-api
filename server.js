@@ -20,7 +20,7 @@ let redisConfig = cloneDeep(config.redis);
 Raven.config(config.sentry.dsn, {
   environment: config.environment,
   debug: config.environment === "development",
-  release: config.commit
+  release: config.commit,
 }).install();
 
 if (redisConfig.url) {
@@ -31,7 +31,7 @@ const clients = {
   redis: redis.createClient(redisConfig.port, redisConfig.host),
   lastfm: new LastfmClient(config.lastfm.apiKey, config.lastfm.user),
   pinboard: new PinboardClient(config.pinboard.apiToken),
-  pocket: new PocketClient(config.pocket.consumerKey)
+  pocket: new PocketClient(config.pocket.consumerKey),
 };
 
 if (redisConfig.password) {
@@ -42,18 +42,18 @@ const workers = {
   lastfm: new LastfmWorker({
     redisClient: clients.redis,
     lastfmClient: clients.lastfm,
-    callback: getLoggingWorkerCallback(LastfmWorker.name)
+    callback: getLoggingWorkerCallback(LastfmWorker.name),
   }),
   pinboard: new PinboardWorker({
     redisClient: clients.redis,
     pinboardClient: clients.pinboard,
-    callback: getLoggingWorkerCallback(PinboardWorker.name)
+    callback: getLoggingWorkerCallback(PinboardWorker.name),
   }),
   pocket: new PocketWorker({
     redisClient: clients.redis,
     pocketClient: clients.pocket,
-    callback: getLoggingWorkerCallback(PocketWorker.name)
-  })
+    callback: getLoggingWorkerCallback(PocketWorker.name),
+  }),
 };
 
 const services = {
@@ -62,8 +62,8 @@ const services = {
   pocket: new PocketService({
     pocketClient: clients.pocket,
     redisClient: clients.redis,
-    pocketWorker: workers.pocket
-  })
+    pocketWorker: workers.pocket,
+  }),
 };
 
 workers.lastfm.start(vars.lastfm.rateLimitsMS.defaultLimit * 5);
